@@ -17,7 +17,7 @@ if not os.path.exists(os.path.join(resulr_dir)):
 # generate an image from the label map.
 # Because the image is spatially deformed, we also output the corresponding deformed label map.
 brain_generator = ImageGenerator(path_label_map)
-for i in range(10):
+for i in range(2):
     im, lab = brain_generator.generate_image()
 
     utils.save_volume(im, brain_generator.aff, brain_generator.header, os.path.join(resulr_dir, 'brain-'+str(i)+'.nii.gz'))
