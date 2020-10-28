@@ -9,7 +9,7 @@ import numpy as np
 result_dir = '/scratch/cai/francesco/lab2im/dataset_QSM/'
 
 # Parameters
-AUGMENTATIONS_PER_PATIENT = 200
+AUGMENTATIONS_PER_PATIENT = 100
 
 for mode in ["train", "val"]:
 
@@ -32,8 +32,12 @@ for mode in ["train", "val"]:
 	        im[im!=0] -= im[im!=0].mean()
 
 	        # Divide by STD, the smaller what inside the uniform, the broader the distribution is
-	        im = im / float(round(np.random.uniform(20., 60.), 4) * im.std())
+	        im = im / float(round(np.random.uniform(10., 60.), 4) * im.std())
 	        im = np.float32(im)
 
 	        utils.save_volume(im, brain_generator.aff, brain_generator.header, result_dir + mode + "/" + patient_name + "_" + str(i) + '_brain.nii.gz')
 	        utils.save_volume(lab, brain_generator.aff, brain_generator.header, result_dir + mode + "/" + patient_name + "_" + str(i) + '_seg.nii.gz')
+	        
+	        del im
+	        del lab
+	        del brain_generator
