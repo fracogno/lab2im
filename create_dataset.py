@@ -15,7 +15,7 @@ args = parser.parse_args()
 result_dir = args.result_dir
 
 # Parameters
-AUGMENTATIONS_PER_PATIENT = 70
+AUGMENTATIONS_PER_PATIENT = 50
 
 filename = args.filename
 patient_name = filename.split("/")[-1]
@@ -36,7 +36,7 @@ for i in range(AUGMENTATIONS_PER_PATIENT):
     im = np.float32(im)
 
     utils.save_volume(im, brain_generator.aff, brain_generator.header, result_dir + patient_name + "_" + str(i) + '_brain.nii.gz')
-    utils.save_volume(lab, brain_generator.aff, brain_generator.header, result_dir + patient_name + "_" + str(i) + '_seg.nii.gz')
+    utils.save_volume(np.int32(lab), brain_generator.aff, brain_generator.header, result_dir + patient_name + "_" + str(i) + '_seg.nii.gz')
     
     del im
     del lab

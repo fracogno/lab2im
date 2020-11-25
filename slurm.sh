@@ -18,10 +18,10 @@ source activate lab2im_env
 
 for mode in "train" "val"
 do
-	folder=$(pwd)"/original_data/"$mode"/"
+	folder=$(pwd)"/freesurferResults/"$mode"/"
 	for file in $(ls $folder)
 	do
-		srun -n 1 python3 create_dataset.py --result_dir $(pwd)"/dataset_QSM/"$mode"/" --filename $folder$file
+		srun -n 1 python3 create_dataset.py --result_dir $(pwd)"/simulated_brains_augmented/"$mode"/" --filename $folder$file
 	done
 done
 
