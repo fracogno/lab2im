@@ -15,7 +15,7 @@ args = parser.parse_args()
 result_dir = args.result_dir
 
 # Parameters
-AUGMENTATIONS_PER_PATIENT = 1
+AUGMENTATIONS_PER_PATIENT = 150
 
 filename = args.filename
 patient_name = filename.split("/")[-1]
