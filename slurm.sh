@@ -16,12 +16,21 @@ conda env list
 #conda install -y -q --name lab2im_env -c conda-forge --file requirements.txt
 source activate lab2im_env
 
+dataset_foldername="extracted"
+
+base_path=$(pwd)"/dataset/"
+dataset_path=$base_path$dataset_foldername
+result_path=$dataset_path"_augmented"
+
+mkdir $result_path
 for mode in "train" "val"
-do
-	folder=$(pwd)"/original_data/"$mode"/"
-	for file in $(ls $folder)
+do		
+	mkdir $result_path"/"$mode"/"
+
+	mode_path=$dataset_path"/"$mode"/"
+	for file in $(ls $mode_path)
 	do
-		srun -n 1 python3 create_dataset.py --result_dir $(pwd)"/dataset_QSM/"$mode"/" --filename $folder$file
+		srun -n 1 python3 create_dataset.py --result_dir $result_path"/"$mode"/" --filename $mode_path$file
 	done
 done
 
