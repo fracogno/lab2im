@@ -16,7 +16,7 @@ conda env list
 #conda install -y -q --name lab2im_env -c conda-forge --file requirements.txt
 source activate lab2im_env
 
-AUGMENTATIONS=2
+AUGMENTATIONS=30
 
 dataset_path=$(pwd)"/dataset/extracted"
 result_path=$dataset_path"_augmented_"$AUGMENTATIONS
