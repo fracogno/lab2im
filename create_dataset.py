@@ -29,7 +29,7 @@ for i in range(args.augmentations):
     im[im!=0] -= im[im!=0].mean()
 
     # Divide by STD, the smaller what inside the uniform, the broader the distribution is
-    im = im / float(round(np.random.uniform(10., 60.), 4) * im.std())
+    im = im / float(round(np.random.uniform(1.5, 5.5), 4))
     im = np.float32(im)
 
     utils.save_volume(im, brain_generator.aff, brain_generator.header, result_dir + patient_name + "_" + str(i) + '_brain.nii.gz')
