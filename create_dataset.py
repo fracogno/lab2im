@@ -9,20 +9,17 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--result_dir", type=str, required=True)
 parser.add_argument("--filename", type=str, required=True)
+parser.add_argument("--augmentations", type=int, required=True)
 args = parser.parse_args()
 
 # path where to save the generated image
 result_dir = args.result_dir
 
-# Parameters
-AUGMENTATIONS_PER_PATIENT = 150
-
 filename = args.filename
 patient_name = filename.split("/")[-1]
 
 for i in range(AUGMENTATIONS_PER_PATIENT):
-    brain_generator = ImageGenerator(labels_dir=filename + "/mri/wmparc.nii",
-                                     blur_background=False)
+    brain_generator = ImageGenerator(labels_dir=filename + "/mri/wmparc.nii", blur_background=False)
     im, lab = brain_generator.generate_image()
     
     # Mask background
