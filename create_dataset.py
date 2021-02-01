@@ -18,7 +18,7 @@ result_dir = args.result_dir
 filename = args.filename
 patient_name = filename.split("/")[-1]
 
-for i in range(AUGMENTATIONS_PER_PATIENT):
+for i in range(args.augmentations):
     brain_generator = ImageGenerator(labels_dir=filename + "/mri/wmparc.nii", blur_background=False)
     im, lab = brain_generator.generate_image()
     
